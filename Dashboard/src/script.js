@@ -1,27 +1,47 @@
 var config = {
     content: [{
         type: 'row',
-        content:[
-        {
-            type: 'component',
-            componentName: 'testDashboard',
-            componentState: { label: 'Gráfico A' }
-        },{
-            type: 'column',
-            content:[{
-                type: 'component',
-                componentName: 'testDashboard',
-                componentState: { label: 'Gráfico B' }
+        content:
+        [
+            {
+                type: 'column',
+                content:[{
+                    type: 'component',
+                    componentName: 'testDashboard',
+                    componentState: { label: 'Gráfico A' }
+                },{
+                    type: 'component',
+                    componentName: 'testDashboard',
+                    componentState: { label: 'Gráfico B' }
+                }]
             },{
                 type: 'component',
                 componentName: 'testDashboard',
                 componentState: { label: 'Gráfico C' }
-            }]
-        },{
-            type: 'component',
-            componentName: 'testDashboard',
-            componentState: { label: 'Gráfico D' }
-        }]
+            },{
+                type: 'column',
+                content:
+                [
+                    {
+                        type: 'component',
+                        componentName: 'testDashboard',
+                        componentState: { label: 'Gráfico D' }
+                    },{
+                        type: 'component',
+                        componentName: 'testDashboard',
+                        componentState: { label: 'Gráfico E' }
+                    },{
+                        type: 'component',
+                        componentName: 'testDashboard',
+                        componentState: { label: 'Gráfico F' }
+                    },{
+                        type: 'component',
+                        componentName: 'testDashboard',
+                        componentState: { label: 'Gráfico G' }
+                    }
+                ]
+            }
+        ]
     }]
 };
 
