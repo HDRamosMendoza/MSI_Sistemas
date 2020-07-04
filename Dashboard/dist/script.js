@@ -114,7 +114,7 @@ var config = {
                         tooltip: 'Gráfico H - Estadístico',
                         type: 'component'
                     },{
-                        componentName: 'testDashboard',
+                        componentName: 'testDashboard2',
                         componentState:
                         { 
                             label: 'Gráfico I',
@@ -148,7 +148,7 @@ myLayout.on( 'stateChanged', function(){
 });
 
 // Persistent component
-var persistentComponent = function( container, componentState) {
+var persistentComponent1 = function( container, componentState) {
     //container.getElement().html( '<h2>' + componentState.label + '</h2>' );
 
     //Check for localStorage
@@ -184,8 +184,21 @@ var persistentComponent = function( container, componentState) {
     //container.getElement().css('background-color', componentState.color);
 }
 
+// Persistent component
+var persistentComponent2 = function( container, componentState) {
+    //Check for localStorage
+    if( !typeof window.localStorage ) {
+        container.getElement()
+            .append(  '<h2 class="err">Your browser doesn\'t support localStorage.</h2>');
+        return;
+    }
+
+    //container.getElement().css('background-color', componentState.color);
+}
+
 // Register component
-myLayout.registerComponent( 'testDashboard', persistentComponent);
+myLayout.registerComponent( 'testDashboard', persistentComponent1);
+myLayout.registerComponent( 'testDashboard2', persistentComponent2);
 
 // Item Created
 myLayout.on( 'itemCreated', function( item ){
@@ -196,9 +209,34 @@ myLayout.on( 'itemCreated', function( item ){
   }
 });
 
+myLayout.on( 'stackCreated', function( stack ){
+    stack.header.controlsContainer
+        .find( '.lm_close' ) //get the close icon
+        .off( 'click' ) //unbind the current click handler
+        .click(function(){
+            //add your own
+            if(confirm('really close this?')) 
+            {
+                stack.remove();
+            }
+        });
+});
+
+
 // Tab Created
 myLayout.on( 'tabCreated', function( tab ){
-  tab.element.attr('title', tab.contentItem.config.tooltip);
+
+    // Tooltip
+    tab.element.attr('title', tab.contentItem.config.tooltip);
+
+    // 
+    tab.closeElement.off('click').click(
+        function(){
+            if( confirm( 'really close this?' ) ) {
+                tab.contentItem.remove();
+            }
+        }
+    );
 });
 
 myLayout.init();
