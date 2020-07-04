@@ -1,6 +1,10 @@
-h2{
-  font: 14px Arial, sans-serif;
-  color:#fff;
-  padding: 10px;
-  text-align: center;
+h2 {
+	color:#fff;
+	font: 14px Arial, sans-serif;
+  	padding: 10px;
+  	text-align: center;
+}
+
+.highlight, .highlight *{
+	background: orange !important;
 }
