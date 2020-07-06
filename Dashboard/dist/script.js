@@ -222,7 +222,6 @@ myLayout.on( 'stackCreated', function( stack ){
         });
 });
 
-
 // Tab Created
 myLayout.on( 'tabCreated', function( tab ){
 
