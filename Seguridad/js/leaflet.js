@@ -1,12 +1,3 @@
-
-	var cities = L.layerGroup();
-
-	L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities),
-	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
-	L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
-	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
-
-
 	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -16,10 +7,12 @@
 		streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
 
 	var map = L.map('map', {
-		center: [-12.099167, -77.034722],
-    	zoom: 14,
-		layers: [grayscale, cities]
+		center: [-9.189967, -75.015152],
+    	zoom: 6,
+		layers: [grayscale]
 	});
+
+
 
 	map.createPane('labels');
 
@@ -34,11 +27,7 @@
 		"Streets": streets
 	};
 
-	var overlays = {
-		"Cities": cities
-	};
-
-	L.control.layers(baseLayers, overlays).addTo(map);
+	L.control.layers(baseLayers).addTo(map);
 
 /************************************************** BORRADOR */
 
@@ -82,6 +71,7 @@ fnLoadSector = function(idElement,urlWFS) {
 
 /* CBO - Sector */
 fnLoadSector('SectorID','http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs');
+
 let multipolygonGeojson;
 fnChangeSector = function(idElement) {
     try { /* DOM - Checkbox (input) */
@@ -99,7 +89,7 @@ fnChangeSector = function(idElement) {
 		  			/* Borrar la capa */
 					map.eachLayer( function(layer) {
           				if ( layer.myTag &&  layer.myTag === "myGeoJSON") {
-            				map.removeLayer(layer)
+            				map.removeLayer(layer);
               			}
             		});
             		/* Adicional al mapa y un popup */
@@ -109,8 +99,8 @@ fnChangeSector = function(idElement) {
 						layer.bindPopup("<strong>SECTOR: " + layer.feature.properties.sector + "</strong>").openPopup();
 						layer.myTag = "myGeoJSON";
 					});
-
-		  			map.fitBounds(multipolygonGeojson.getBounds());
+					map.flyToBounds(multipolygonGeojson.getBounds());
+		  			//map.fitBounds(multipolygonGeojson.getBounds());
 		  		}
 		  	}
         });
@@ -121,19 +111,30 @@ fnChangeSector = function(idElement) {
 fnChangeSector('SectorID');
 
 /*Configurando*/
-function fnTileLayer (){
-     //defeine schools as a global variable, without var keyword so it can be checked at set_sql function
-     schools = L.tileLayer.wms('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wms', {
-            layers: 'msigeoportal:sec_catastro',
-            format: 'image/png',
-            transparent: true,
-            maxZoom: 30,
-            opacity: 0.5,
-            cql_filter: '1=2',
-            pane: 'labels'
-        }).addTo(map);
-
-     //console.log(schools);
+function fnTileLayer() {
+	schools = L.tileLayer.wms('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wms', {
+        layers: 'msigeoportal:sec_catastro',
+        format: 'image/png',
+        transparent: true,
+        maxZoom: 30,
+        opacity: 0.5,
+        cql_filter: '1=2',
+        pane: 'labels'
+	}).addTo(map);
 }
 
 fnTileLayer();
+
+function fnNuevoCasoCancelar(idElement) {
+	const nodeCheckbox = document.getElementById(idElement);
+    nodeCheckbox.addEventListener('click', function(event) {
+    	console.log("Se muestra");
+		map.flyTo([43.370627,-80.998735], 13);
+    });
+
+}
+
+fnNuevoCasoCancelar('btnCancelarCaso');
+
+/* Zoom - San Isidro */
+map.flyTo([-12.099167, -77.034722], 13);
