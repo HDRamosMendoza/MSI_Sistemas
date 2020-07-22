@@ -20,7 +20,7 @@
 	map.getPane('labels').style.zIndex = 650;
 
 	// Layers in this pane are non-interactive and do not obscure mouse/touch events
-	map.getPane('labels').style.pointerEvents = 'none';
+	//map.getPane('labels').style.pointerEvents = 'none';
 
 	var baseLayers = {
 		"Grayscale": grayscale,
@@ -43,7 +43,7 @@ fnLoadSector = function(idElement,urlWFS) {
 	      		service: 'WFS',
 	      		request: 'GetFeature',
 	      		typeName: 'msigeoportal:sec_catastro',
-	      		CQL_FILTER: sql_text,
+	      		cql_filter: sql_text,
 	      		srsname: 'EPSG:4326',
 	      		outputFormat: 'application/json'
 	    	}
@@ -61,7 +61,7 @@ fnLoadSector = function(idElement,urlWFS) {
             }
             resultItems = resultItems.sort();
             localStorage.setItem('sector', JSON.stringify(features));
-            resultItems.unshift("<option data-heber='asa' value=\"\"> - Seleccione - </option>");
+            resultItems.unshift("<option value=\"\"> - Seleccione - </option>");
 		  	document.getElementById(idElement).innerHTML = resultItems.join("");
 
 		  	
@@ -125,16 +125,9 @@ function fnTileLayer() {
 
 fnTileLayer();
 
-function fnNuevoCasoCancelar(idElement) {
-	const nodeCheckbox = document.getElementById(idElement);
-    nodeCheckbox.addEventListener('click', function(event) {
-    	console.log("Se muestra");
-		map.flyTo([43.370627,-80.998735], 13);
-    });
-
-}
-
-fnNuevoCasoCancelar('btnCancelarCaso');
+L.marker([-12.0989,-77.0347]).addTo(map);
 
 /* Zoom - San Isidro */
-map.flyTo([-12.099167, -77.034722], 13);
+setTimeout(function(){ 
+	map.flyTo([-12.099167, -77.034722], 13);
+}, 1000);
