@@ -125,7 +125,17 @@ function fnTileLayer() {
 
 fnTileLayer();
 
-L.marker([-12.0989,-77.0347]).addTo(map);
+var greenIcon = L.icon({
+    iconUrl: 'images/policia-48.png',
+
+    iconSize:     [38, 38], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+L.marker([-12.0989,-77.0347],{icon: greenIcon}).addTo(map);
 
 /* Zoom - San Isidro */
 setTimeout(function(){ 
