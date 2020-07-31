@@ -75,10 +75,9 @@ L.control.layers(
 
 let schools;
 sql_text = '1=1';
-
-/* CBO - Change 
+/* CBO - Change */
 fnLoadSector = function(idElement,urlWFS) {
-    try { // DOM - Checkbox (input)
+    try { /* DOM - Checkbox (input) */
         const nodeCheckbox = document.getElementById(idElement);
         $.ajax( urlWFS, {
             type: 'GET',
@@ -109,15 +108,13 @@ fnLoadSector = function(idElement,urlWFS) {
         });
     } catch (error) { console.error(error); }
 };
-*/
 
-/* CBO - Sector 
+/* CBO - Sector */
 fnLoadSector('SectorID','http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs');
-*/
-/*
+
 let multipolygonGeojson;
 fnChangeSector = function(idElement) {
-try {
+try { /* DOM - Checkbox (input) */
 const nodeCheckbox = document.getElementById(idElement);
 nodeCheckbox.addEventListener('change', function(event) {
 event.preventDefault();
@@ -129,16 +126,16 @@ let cboSector = JSON.parse(localStorage.getItem('sector'));
   for (var i = 0; i < cboSector.length; i++) {
 
       if(cboSector[i].properties.id_sector == idValue) {
-            // Borrar la capa
+          /* Borrar la capa */
         map.eachLayer( function(layer) {
               if ( layer.myTag &&  layer.myTag === "myGeoJSON") {
                 map.removeLayer(layer);
               }
         });
-        // Adicional al mapa y un popup
+        /* Adicional al mapa y un popup */
           multipolygonGeojson = L.geoJson(cboSector[i]).addTo(map);
           multipolygonGeojson.eachLayer(function (layer) {
-            //Configuracion del POPUP
+              /* Configuracion del POPUP */
             layer.bindPopup("<strong>SECTOR: " + layer.feature.properties.sector + "</strong>").openPopup();
             layer.myTag = "myGeoJSON";
         });
@@ -149,14 +146,11 @@ let cboSector = JSON.parse(localStorage.getItem('sector'));
 });
 } catch (error) { console.error(error); }
 };
-*/
 
-/* CBO - Sector 
+/* CBO - Sector */
 fnChangeSector('SectorID');
-*/
 
 /*Configurando*/
-/*
 function fnTileLayer() {
     schools = L.tileLayer.wms('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wms', {
         layers: 'msigeoportal:sec_catastro',
@@ -169,7 +163,6 @@ function fnTileLayer() {
     }).addTo(map);
 };
 fnTileLayer();
--*/
 
 /*
 let greenIcon = L.icon({
@@ -190,112 +183,26 @@ setTimeout(function(){
 
 
 /* CBO - Change */
-fnLoadUbicacion = function() {
-    let data = "{\"Longitud\":\"-77.0330859\", \"Latitud\":\"-12.0946961\"}"
-    /* DOM - Checkbox (input) */
-    /*
-    try { 
+fnLoadUbicacion = function(longitud_X, latitud_Y) {
+    let data = {
+        "Longitud":"-77.0330859", 
+        "Latitud":"-12.0946961"
+    };
+
+    try { /* DOM - Checkbox (input) */
         $.ajax({
             type: "POST",
-            url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
+            url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro',
             data : JSON.stringify(data),
             contentType: "application/json",
+            dataType: 'json'
         }).done(function(item) {
             console.log(item);
         });
     } catch (error) { console.error(error); }
-    */
-  
-  $.ajax({
-    async: true,
-    crossDomain: true,
-    method: "post",
-    url: 'https://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro',
-    data : data,
-    contentType:'application/json',
-    dataType: "jsonp",
-    cors: true ,
-    headers: {
-        "content-type": "application/json",
-        "cache-control": "no-cache",
-        "postman-token": "0b4e16e8-98ca-b52c-2c29-da643a6d34a3"
-    },
-    processData: false,
-    success: function(respuesta) {
-        console.log("- - - - - - -");
-        console.log(respuesta);
-        console.log("- - - - - - -");
-    },
-    error: function(e) {
-      console.log("No se ha podido obtener la información");
-      console.log(e);
-    }
-  });
-
-  /*
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro",
-    "method": "POST",
-    "headers": {
-      "content-type": "application/json",
-      "cache-control": "no-cache",
-      "postman-token": "a3792288-6148-aa73-00aa-e822b22197b9"
-    },
-    "processData": false,
-    "data": "{\n     \"Longitud\":\"-77.0330859\", \n     \"Latitud\":\"-12.0946961\"\n}"
-  }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
-
-  */
-
-/*
-    var flickerAPI = "http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?";
-    $.getJSON( flickerAPI, {
-        Longitud:"-77.0330859", 
-        Latitud:"-12.0946961"
-    }).done(function( data ) {
-      console.log(data);
-    });
-    */
-   /*
-    $.ajax({
-        type: 'POST',
-        crossDomain: true,
-        dataType: 'jsonp',
-        data : data,
-        url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
-        success: function(jsondata){
-            console.log(jsondata);
-        }
-    })
-    */
-/*
-    $.ajax({
-        type: "post",
-        contentType:'application/json',
-        url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
-        secure: true,
-        data: JSON.stringify(data),
-        dataType: "jsonp",
-        cors: true ,
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "Basic " + btoa(""));
-        },
-        success: function (msg) { msg.d}
-    });
-    */
 };
 
 
 
 /* CBO - Sector */
-fnLoadUbicacion();
+fnLoadUbicacion("-77.0330859","-12.0946961");

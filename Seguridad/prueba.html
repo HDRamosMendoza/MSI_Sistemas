@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+    <script>
+
+        let settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro",
+            "method": "POST",
+            "headers": {
+            "content-type": "application/json;charset=utf-8;",
+            "cache-control": "no-cache"
+            },
+            "processData": false,
+            "dataType": "json",
+            "data": "{\"Longitud\":\"-77.0330859\",\"Latitud\":\"-12.0946961\"}"
+        }
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+
+        var request = require("request");
+
+var options = { method: 'POST',
+  url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro',
+  headers: 
+   { 'postman-token': '4ebe296b-421d-d72b-cd3e-909689846faa',
+     'cache-control': 'no-cache',
+     'content-type': 'application/json' },
+  body: { Longitud: '-77.0330859', Latitud: '-12.0946961' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+        
+    </script>
+    
+</body>
+</html>
