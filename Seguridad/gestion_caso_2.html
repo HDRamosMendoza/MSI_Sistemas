@@ -31,7 +31,6 @@
     <link href="./build/css/custom.css" rel="stylesheet">
     <!-- Leaflet - CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <link href="./css/leaflet.css" rel="stylesheet">
   </head>
 
@@ -199,13 +198,28 @@
             
               <div class="row">
                 
-                <!-- BEGIN - Map -->
-                <div class="col-md-8 col-sm-7 col-xs-7">
-                  <div id="map"></div>
+                
+                <!-- BEGIN PANEL - MAP -->
+                <div id="IDContent" class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- de 12 se pasa 9 -->
+                    <div class="x_panel">
+                        <!-- MAP -->
+                        <div id="map" class="x_content"></div>
+                        <!-- BUTTON - Cancelar -->
+                        <button type="button" class="btn btn-leaflet btn-primary btn-md btn-right" id="IDCancelar" onclick="_changeXPanel(false,this)">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                            Cancelar
+                        </button>
+                        <!-- BUTTON - Nuevo -->
+                        <button type="button" class="btn btn-leaflet btn-primary btn-md btn-right" id="IDNuevo" onclick="_changeXPanel(true,this)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Nuevo
+                        </button>
+                    </div>
                 </div>
-                <!-- END - Map -->
+                <!--END PANEL - MAP -->
 
-                <div class="col-md-4 col-sm-5 col-xs-5">
+                <div class="col-md-4 col-sm-4 col-xs-4">
                   <div class="x_panel">
                     <div class="x_content">
                       
@@ -340,13 +354,13 @@
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                   <fieldset>
-                                    <legend>Localización del Incidente</legend>
+                                    <legend>Localización</legend>
                                     <br>
                                     <div class="row">
                                       <div class="form-group">
-                                        <label for="InterseccioneID" class="col-md-2 control-label">Vía: </label>
+                                        <label for="IDVia" class="col-md-2 control-label">Vía: </label>
                                         <div class="col-md-3">
-                                          <select id="SectorID" class="form-control input-sm">
+                                          <select id="IDVia" class="form-control input-sm">
                                             <option value="Subs1">Subsector 1</option>
                                             <option value="Subs2">Subsector 2</option>
                                             <option value="Subs3">Subsector 3</option>
@@ -355,15 +369,15 @@
                                           </select>
                                         </div>
                                       
-                                        <label for="InterseccioneID" class="col-md-1 control-label">N°: </label>
+                                        <label for="IDNumero" class="col-md-1 control-label">N°: </label>
                                         <div class="col-md-2">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDNumero"
                                             placeholder="Ingrese número">
                                         </div>
 
-                                        <label for="InterseccioneID" class="col-md-1 control-label">Cdra: </label>
+                                        <label for="IDCuadra" class="col-md-1 control-label">Cdra: </label>
                                         <div class="col-md-3">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDCuadra"
                                             placeholder="Cuadra">
                                         </div>
                                       </div>
@@ -372,21 +386,21 @@
                                     <div class="row">
                                       <div class="form-group">
                                         
-                                        <label for="InterseccioneID" class="col-md-2 control-label">Manzana: </label>
+                                        <label for="IDManzana" class="col-md-2 control-label">Manzana: </label>
                                         <div class="col-md-3">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDManzana"
                                             placeholder="Manzana">
                                         </div>
                                       
-                                        <label for="InterseccioneID" class="col-md-1 control-label">Lote: </label>
+                                        <label for="IDLote" class="col-md-1 control-label">Lote: </label>
                                         <div class="col-md-2">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDLote"
                                             placeholder="Lote">
                                         </div>
                                       
-                                        <label for="InterseccioneID" class="col-md-1 control-label">Dpto: </label>
+                                        <label for="IDDepartamento" class="col-md-1 control-label">Dpto: </label>
                                         <div class="col-md-3">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDDepartamento"
                                             placeholder="Departamento">
                                         </div>
                                       </div>
@@ -394,15 +408,15 @@
                                     
                                     <div class="row">
                                       <div class="form-group">
-                                        <label for="InterseccioneID" class="col-md-2 control-label">Comentario: </label>
+                                        <label for="IDComentario" class="col-md-2 control-label">Comentario: </label>
                                         <div class="col-md-4">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDComentario"
                                             placeholder="Ingrese comentario">
                                         </div>
                                       
-                                        <label for="InterseccioneID" class="col-md-2 control-label">Hab. Urbana: </label>
+                                        <label for="IDHabilitacion" class="col-md-2 control-label">Hab. Urbana: </label>
                                         <div class="col-md-4">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDHabilitacion"
                                             placeholder="Ingrese habilitación hurbana">
                                         </div>
                                       </div>
@@ -410,9 +424,9 @@
 
                                     <div class="row">
                                       <div class="form-group">
-                                        <label for="InterseccioneID" class="col-md-2 control-label">Intersección: </label>
+                                        <label for="IDInterseccion" class="col-md-2 control-label">Intersección: </label>
                                         <div class="col-md-10">
-                                          <input type="text" class="form-control" id="InterseccioneID"
+                                          <input type="text" class="form-control" id="IDInterseccion"
                                             placeholder="Ingrese intersección">
                                         </div>
                                       </div>

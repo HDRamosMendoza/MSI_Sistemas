@@ -50,8 +50,8 @@ let basemaps = {
 };
 
 var map = L.map('map', {
-    center: [-9.189967, -75.015152],
-    zoom: 5,
+    center: [-12.099167, -77.034722],
+    zoom: 14,
     layers: [
         basemaps['MSI - Distritos Colindantes'],
         baseLayers['Lotización']
@@ -114,6 +114,7 @@ fnLoadSector = function(idElement,urlWFS) {
 /* CBO - Sector 
 fnLoadSector('SectorID','http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs');
 */
+
 /*
 let multipolygonGeojson;
 fnChangeSector = function(idElement) {
@@ -183,119 +184,183 @@ let greenIcon = L.icon({
 L.marker([-12.0989,-77.0347],{icon: greenIcon}).addTo(map);
 */
 
-/* Zoom - San Isidro */
+/* Zoom - San Isidro
 setTimeout(function(){ 
     map.flyTo([-12.099167, -77.034722], 14);
 }, 1000);
+ */
 
+/* LOAD - Field */
+let _fnLoadField = function(Longitud, Latitud) {
+    try {
+        /* DOM - Checkbox (input) */
+        let settings = {
+            url: "https://test.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            data: JSON.stringify(
+                {
+                    "Longitud":Longitud,
+                    "Latitud":Latitud
+                }
+            )
+        };
 
-/* CBO - Change */
-fnLoadUbicacion = function() {
-    let data = "{\"Longitud\":\"-77.0330859\", \"Latitud\":\"-12.0946961\"}"
-    /* DOM - Checkbox (input) */
-    /*
-    try { 
-        $.ajax({
-            type: "POST",
-            url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
-            data : JSON.stringify(data),
-            contentType: "application/json",
-        }).done(function(item) {
-            console.log(item);
-        });
-    } catch (error) { console.error(error); }
-    */
-  
-  $.ajax({
-    async: true,
-    crossDomain: true,
-    method: "post",
-    url: 'https://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro',
-    data : data,
-    contentType:'application/json',
-    dataType: "jsonp",
-    cors: true ,
-    headers: {
-        "content-type": "application/json",
-        "cache-control": "no-cache",
-        "postman-token": "0b4e16e8-98ca-b52c-2c29-da643a6d34a3"
-    },
-    processData: false,
-    success: function(respuesta) {
-        console.log("- - - - - - -");
-        console.log(respuesta);
-        console.log("- - - - - - -");
-    },
-    error: function(e) {
-      console.log("No se ha podido obtener la información");
-      console.log(e);
+        $.ajax(settings)
+            .done(function (response) {
+                /* FIELD */
+                $("#IDCuadra").val(response[0]["CuadraVia"]);
+                $("#IDComentario").val(response[0]["ReferenciaDireccion"]);
+            })
+            .fail(function(jqXHR, textStatus) {
+                console.log(textStatus);
+            })
+            .always(function() {
+                console.log(`Complete - fnLoadUbicacion`);
+            });
+
+    } catch(error) {
+        console.error(`fnLoadUbicacion: ${error.name} - ${error.message}.`);
     }
-  });
-
-  /*
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro",
-    "method": "POST",
-    "headers": {
-      "content-type": "application/json",
-      "cache-control": "no-cache",
-      "postman-token": "a3792288-6148-aa73-00aa-e822b22197b9"
-    },
-    "processData": false,
-    "data": "{\n     \"Longitud\":\"-77.0330859\", \n     \"Latitud\":\"-12.0946961\"\n}"
-  }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
-
-  */
-
-/*
-    var flickerAPI = "http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?";
-    $.getJSON( flickerAPI, {
-        Longitud:"-77.0330859", 
-        Latitud:"-12.0946961"
-    }).done(function( data ) {
-      console.log(data);
-    });
-    */
-   /*
-    $.ajax({
-        type: 'POST',
-        crossDomain: true,
-        dataType: 'jsonp',
-        data : data,
-        url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
-        success: function(jsondata){
-            console.log(jsondata);
-        }
-    })
-    */
-/*
-    $.ajax({
-        type: "post",
-        contentType:'application/json',
-        url: 'http://servicios.munisanisidro.gob.pe/WSMSI/ListarCalleCatastro?jsoncallback=?',
-        secure: true,
-        data: JSON.stringify(data),
-        dataType: "jsonp",
-        cors: true ,
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "Basic " + btoa(""));
-        },
-        success: function (msg) { msg.d}
-    });
-    */
 };
 
+/* LOAD - Field */
+_fnLoadField("-77.0330859","-12.0946961");
 
+/* LOAD - Lote */
+let _fnLoadLote = function(lote) {
+    
+    try {
+        // DOM - Checkbox (input)
+        let markerLote;
+        let settings = {
+            url: "https://test.munisanisidro.gob.pe/WSMSI/ListarCalleCatastroLote",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            data: JSON.stringify({ "Lote": lote })
+        };
 
-/* CBO - Sector */
-fnLoadUbicacion();
+        $.ajax(settings)
+            .done(function (response) {
+                // LOTE
+                console.log(response[0]);
+                let greenIcon = L.icon({
+                    iconUrl: 'images/geo-35.png', iconSize:[38,38],
+                });
+                markerLote = [response[0]["NumLatitud"],response[0]["NumLongitud"]];
+                let popupLote = L.marker(markerLote,{
+                    icon: greenIcon
+                }).addTo(map);
+                popupLote.bindPopup("<center><b>LOTE</b></center>\
+                    <p>\
+                        <b>Código Lote Catastral:</b> "+ response[0]['CodigoLoteCatastral'] + "<br/>\
+                        <b>Código Sector Vecinal:</b> "+ response[0]["CodigoSectorVecinal"] + "<br/>\
+                        <b>Código Segmento Víal:</b> "+ response[0]["CodigoSegmentoVial"] + "<br/>\
+                        <b>Código SubSectorVecinal:</b> "+ response[0]["CodigoSubSectorVecinal"] + "<br/>\
+                        <b>Código Ubigeo:</b> "+ response[0]["CodigoUbigeo"] + "<br/>\
+                        <b>Código Vía:</b> "+ response[0]["CodigoVia"] + "<br/>\
+                        <b>Cuadra Vía:</b> "+ response[0]["CuadraVia"] + "<br/>\
+                        <b>Latitud:</b> "+ response[0]["NumLatitud"] + "<br/>\
+                        <b>Longitud:</b> "+ response[0]["NumLongitud"] + "<br/>\
+                        <b>Referencia Dirección:</b>"+ response[0]["ReferenciaDireccion"] + "\
+                    </p>\
+                ").openPopup();
+            })
+            .fail(function(jqXHR, textStatus) {
+                console.log(textStatus);
+            })
+            .always(function() {
+                console.log(`Complete - fnLoadUbicacion`);
+            });
+
+    } catch(error) {
+        console.error(`_fnLoadLote: ${error.name} - ${error.message}.`);
+    }
+};
+
+/* LOAD - Lote */
+_fnLoadLote("3104010002");
+
+/* Map RENDER */
+let _zoomHomeToggle = function(valueBoolean){
+    try{
+      let getCenter = map.getCenter(),point,pixelToGrad;
+      let gradToPixel = map.latLngToContainerPoint(getCenter);
+      if (valueBoolean){
+        point = [gradToPixel.x - 300, gradToPixel.y + 300];
+      } else {
+        point = [gradToPixel.x + 300, gradToPixel.y - 300];
+      }
+      pixelToGrad = map.containerPointToLatLng(point);
+      map.setView(pixelToGrad,map.getZoom())
+    } catch(error) {
+      console.error(`InitializeMap: ${error.name} - ${error.message}.`);
+    }
+};
+
+let _changeButtonNuevo = function(idElement){
+    const nodeNuevo = document.getElementById(idElement);
+    const nodeCancelar = document.getElementById('IDCancelar');
+    nodeNuevo.addEventListener('click', function(event) {
+        const contentID = document.getElementById("IDContent");
+        const contentMap = document.getElementById("map");
+        contentID.classList.remove('col-md-12');
+        contentID.classList.add('col-md-8');
+        console.log(contentMap.style.height);
+        contentMap.style.height = "800px";
+        nodeNuevo.style.display = "none";
+        nodeCancelar.style.display = "block";
+        _zoomHomeToggle(false);
+    });
+};
+
+_changeButtonNuevo("IDNuevo");
+
+let _changeButtonCancelar = function(idElement){
+    const nodeNuevo = document.getElementById("IDNuevo");
+    const nodeCancelar = document.getElementById(idElement);
+    nodeCancelar.addEventListener('click', function(event) {
+        const contentID = document.getElementById("IDContent");
+        const contentMap = document.getElementById("map");
+        contentID.classList.remove('col-md-8');
+        contentID.classList.add('col-md-12');
+        console.log(contentMap.style.height);
+        contentMap.style.height = "450px";
+        nodeCancelar.style.display = "none";
+        nodeNuevo.style.display = "block";
+        _zoomHomeToggle(true);
+    });
+};
+
+_changeButtonCancelar('IDCancelar');
+/*
+let _changeXPanel = function (valueBoolean, valueThis) {
+    try {
+        // Accede al padre del padre
+        const contentID = valueThis.parentNode.parentNode;
+        const contentIDNuevoCaso = document.getElementById("IDNuevoCaso");
+        const contentMap = document.getElementById("map");
+        if (valueBoolean == true) {
+            contentID.classList.remove('col-md-12');
+            contentID.classList.add('col-md-8');
+            contentMap.style.height = "820px";
+            valueThis.style.display = "none";
+            // Accede al hermano siguiente
+            valueThis.previousElementSibling.style.display = "block";
+            contentIDNuevoCaso.style.display = "block";
+            _zoomHomeToggle(false);
+        } else {
+            contentID.classList.remove('col-md-8');
+            contentID.classList.add('col-md-12');
+            contentMap.style.height = "450px";
+            valueThis.style.display = "none";
+            // Accede al hermano anterior con la misma jerarquia
+            valueThis.nextElementSibling.style.display = "block";
+            contentIDNuevoCaso.style.display = "none";
+            _zoomHomeToggle(true);
+        }
+    } catch (error) {
+        console.error(`_changeXPanel: ${error.name} - ${error.message}.`);
+    }
+};
+*/

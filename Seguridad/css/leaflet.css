@@ -1,1 +1,30 @@
-#map {height: 415px;}
+#map {
+	height: 450px;
+}
+
+.leaflet-control-layers{
+	top: 45px;
+}
+
+.btn-leaflet {
+	position: absolute;
+	z-index: 1000;
+	width: 95px;
+	right: 15px;
+	top: 10px;
+}
+
+#IDCancelar {
+	display: none;
+}
+
+
+/*
+#map {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+*/
