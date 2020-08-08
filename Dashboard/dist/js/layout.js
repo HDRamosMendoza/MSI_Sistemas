@@ -4,25 +4,24 @@ var config = {
         content:
         [
             {
+                type: 'component',
+                componentName: 'testDashboardC1',
+                componentState:
+                { 
+                    color: '#FCFCFC',
+                    label: 'Gráfico E',
+                    text: 'Gráfico E'
+                },
+                title: '<strong>MSI - Visor de Seguridad Ciudadana</strong>',
+                tooltip: 'MSI - Visor de Seguridad Ciudadana'
+            },{
                 type: 'column',
-                content:
-                [
+                content:[
                     {
                         type: 'stack',
                         content: [
                             {
-                                componentName: 'testDashboardA1',
-                                componentState:
-                                { 
-                                    label: 'Gráfico A1',
-                                    color: '#FCFCFC',
-                                    text: 'Gráfico A1'
-                                },
-                                title: '<strong>Gráfico A1</strong>',
-                                tooltip: 'Gráfico A1 - Estadístico',
-                                type: 'component'
-                            },{
-                                
+                                type: 'component',
                                 componentName: 'testDashboardA2',
                                 componentState:
                                 { 
@@ -32,9 +31,40 @@ var config = {
                                 },
                                 title: '<strong>Gráfico A2</strong>',
                                 tooltip: 'Gráfico A2 - Estadístico',
-                                type: 'component'
+                            }
+                        ]
+                    },{
+                        type: 'stack',
+                        content: [
+                            {
+                                type: 'component',
+                                componentName: 'testDashboard6',
+                                componentState: 
+                                {
+                                    color: '#FCFCFC',
+                                    label: 'Gráfico H',
+                                    text: 'Gráfico H'
+                                },
+                                title: '<strong>Gráfico H</strong>',
+                                tooltip: 'Gráfico H - Estadístico',
                             },{
-                                
+                                type: 'component',
+                                componentName: 'testDashboard5',
+                                componentState:
+                                {
+                                    color: '#FCFCFC',
+                                    label: 'Gráfico G',
+                                    text: 'Gráfico G'
+                                },
+                                title: '<strong>Gráfico G</strong>',
+                                tooltip: 'Gráfico G - Estadístico',
+                            }
+                        ]
+                    },{
+                        type: 'stack',
+                        content: [
+                            {
+                                type: 'component',
                                 componentName: 'testDashboardA3',
                                 componentState:
                                 { 
@@ -44,24 +74,63 @@ var config = {
                                 },
                                 title: '<strong>Gráfico A3</strong>',
                                 tooltip: 'Gráfico A3 - Estadístico',
-                                type: 'component'
+                            },{
+                                type: 'component',
+                                componentName: 'testDashboardA1',
+                                componentState:
+                                { 
+                                    label: 'Gráfico A1',
+                                    color: '#FCFCFC',
+                                    text: 'Gráfico A1'
+                                },
+                                title: '<strong>Gráfico A1</strong>',
+                                tooltip: 'Gráfico A1 - Estadístico'
                             }
                         ]
                     },{
-                        type: 'stack',
+                        type: 'row',
                         content: [
                             {
-                                componentName: 'testDashboard21',
-                                componentState:
-                                { 
-                                    label: 'Gráfico C',
-                                    color: '#FCFCFC',
-                                    text: 'Gráfico C'
-                                },
-                                title: '<strong>Gráfico C</strong>',
-                                tooltip: 'Gráfico C - Estadístico',
-                                type: 'component'
+                                type: 'stack',
+                                content: [
+                                    {
+                                        type: 'component',
+                                        componentName: 'testDashboard21',
+                                        componentState:
+                                        { 
+                                            label: 'Gráfico C',
+                                            color: '#FCFCFC',
+                                            text: 'Gráfico C'
+                                        },
+                                        title: '<strong>Gráfico C</strong>',
+                                        tooltip: 'Gráfico C - Estadístico',
+                                    },{
+                                        type: 'component',
+                                        componentName: 'testDashboard7',
+                                        componentState:
+                                        { 
+                                            label: 'Gráfico I',
+                                            color: '#FCFCFC',
+                                            text: 'Gráfico I'
+                                        },
+                                        cssClass: 'highlight',
+                                        title: '<strong>Gráfico I</strong>',
+                                        tooltip: 'Gráfico I - Estadístico',
+                                    },{
+                                        type: 'component',
+                                        componentName: 'testDashboard4',
+                                        componentState:
+                                        { 
+                                            color: '#FCFCFC',
+                                            label: 'Gráfico F',
+                                            text: 'Gráfico F'
+                                        },
+                                        title: '<strong>Gráfico F</strong>',
+                                        tooltip: 'Gráfico F - Estadístico',
+                                    }
+                                ]
                             },{
+                                type: 'component',
                                 componentName: 'testDashboardB2',
                                 componentState:
                                 { 
@@ -71,72 +140,8 @@ var config = {
                                 },
                                 title: '<strong>Gráfico D</strong>',
                                 tooltip: 'Gráfico D - Estadístico',
-                                type: 'component'
                             }
                         ]
-                    }
-                ]
-            },{
-                type: 'component',
-                componentName: 'testDashboardC1',
-                componentState:
-                { 
-                    color: '#FCFCFC',
-                    label: 'Gráfico E',
-                    text: 'Gráfico E'
-                },
-                title: '<strong>Gráfico E</strong>',
-                tooltip: 'Gráfico E - Estadístico'
-            },{
-                type: 'column',
-                content:
-                [
-                    {
-                        componentName: 'testDashboard4',
-                        componentState:
-                        { 
-                            color: '#FCFCFC',
-                            label: 'Gráfico F',
-                            text: 'Gráfico F'
-                        },
-                        title: '<strong>Gráfico F</strong>',
-                        tooltip: 'Gráfico F - Estadístico',
-                        type: 'component'
-                    },{
-                        componentName: 'testDashboard5',
-                        componentState:
-                        {
-                            color: '#FCFCFC',
-                            label: 'Gráfico G',
-                            text: 'Gráfico G'
-                            
-                        },
-                        title: '<strong>Gráfico G</strong>',
-                        tooltip: 'Gráfico G - Estadístico',
-                        type: 'component'
-                    },{
-                        componentName: 'testDashboard6',
-                        componentState: 
-                        {
-                            color: '#FCFCFC',
-                            label: 'Gráfico H',
-                            text: 'Gráfico H'
-                        },
-                        title: '<strong>Gráfico H</strong>',
-                        tooltip: 'Gráfico H - Estadístico',
-                        type: 'component'
-                    },{
-                        componentName: 'testDashboard7',
-                        componentState:
-                        { 
-                            label: 'Gráfico I',
-                            color: '#FCFCFC',
-                            text: 'Gráfico I'
-                        },
-                        cssClass: 'highlight',
-                        title: '<strong>Gráfico I</strong>',
-                        tooltip: 'Gráfico I - Estadístico',
-                        type: 'component'
                     }
                 ]
             }
@@ -206,7 +211,7 @@ var persistentComponentA1 = function( container, componentState) {
     // Append it to the DOM
     container.getElement()
         .append('<center>\
-                    <div id="canvasA1" style="width: 90%;">\
+                    <div id="canvasA1" style="width: 60%;">\
                         <canvas id="chart-0_A1"></canvas>\
                     </div>\
                 <center>')
@@ -224,7 +229,7 @@ var persistentComponentA2 = function( container, componentState) {
     // Append it to the DOM
     container.getElement()
         .append('<center>\
-                    <div id="canvasA2" style="width:100%; height: 100% !important">\
+                    <div id="canvasA2" style="width:50%; height: 100% !important">\
                         <canvas id="canvas_A2"></canvas>\
                     </div>\
                 <center>')
@@ -242,7 +247,7 @@ var persistentComponentA3 = function( container, componentState) {
     // Append it to the DOM
     container.getElement()
         .append('<center>\
-                    <div id="canvasA3" style="width:100%; height: 100% !important">\
+                    <div id="canvasA3" style="width:50%; height: 100% !important">\
                         <canvas id="LineA3"></canvas>\
                     </div>\
                 <center>')
@@ -303,7 +308,54 @@ var persistentComponentC1 = function( container, componentState) {
 
     // Append it to the DOM
     container.getElement()
-        .append('<div id="map" style="width:100%; height: 100% !important"></div>')
+        .append('\
+            <div id="map" style="width:100%; height: 100% !important"></div>\
+            <div class="aside-layout">\
+                <section>\
+                    <div class="aside-button">\
+                            <div class="btn-tab" name="ÍNDICE DE ASALTOS Y ROBOS" onclick="_changeButton(this,1)" id="DefultButton">ASALTO Y ROBO</div>\
+                            <div class="btn-tab" name="ÍNDICE DE ACCIDENTES" onclick="_changeButton(this,2)">ACCIDENTE</div>\
+                            <div class="btn-tab" name="ÍNDICE DE APOYO POR SEGURIDAD" onclick="_changeButton(this,3)">SEGURIDAD</div>\
+                    </div>\
+                    <div class="aside-name"></div>\
+                    <div class="aside-title">VISTA</div>\
+                    <div class="aside-time" id="time"></div>\
+                    <div class="aside-message">Zoom a las incidencias</div>\
+                </section>\
+                <section>\
+                    <div class="aside-sector">\
+                        <div>Incidencia</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    </div>\
+                    <div class="aside-sector">\
+                        <div>Sector I</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    </div>\
+                    <div class="aside-sector">\
+                        <div>Sector II</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    </div>\
+                    <div class="aside-sector">\
+                        <div>Sector III</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    </div>\
+                    <div class="aside-sector">\
+                        <div>Sector VI</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    </div>\
+                    <div class="aside-sector">\
+                        <div>Sector V</div>\
+                        <div>CONTENIDO</div>\
+                        <div></div>\
+                    <div>\
+                </section>\
+            </div>\
+        ')
         .css('background-color', componentState.color);
 
     //container.getElement().css('background-color', componentState.color);
@@ -343,7 +395,7 @@ var persistentComponent5 = function( container, componentState) {
     // Append it to the DOM
     container.getElement()
         .append('<center>\
-                    <div id="container5" style="width:75%; height: 100% !important">\
+                    <div id="container5" style="width:50%; height: 100% !important">\
                         <canvas id="canvas5"></canvas>\
                     </div>\
                 <center>')
@@ -364,7 +416,7 @@ var persistentComponent6 = function( container, componentState) {
     // Append it to the DOM
     container.getElement()
         .append('<center>\
-                    <div style="width:70%; height: 100% !important">\
+                    <div style="width:50%; height: 100% !important">\
                         <canvas id="canvas6"></canvas>\
                     </div>\
                 <center>')
@@ -448,4 +500,3 @@ myLayout.on( 'tabCreated', function( tab ){
 });
 
 myLayout.init();
-
