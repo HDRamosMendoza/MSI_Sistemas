@@ -661,16 +661,22 @@ let _changeButton = function(paramThis, paramButton) {
     let contentAside = paramThis.parentNode.parentNode.parentNode;
     let contentAsideNodes = paramThis.parentNode.childNodes;
     contentAsideNodes[1].style.borderBottom = "0px solid white";
+    contentAsideNodes[1].style.fontWeight = "lighter";
     contentAsideNodes[3].style.borderBottom = "0px solid white";
+    contentAsideNodes[3].style.fontWeight = "lighter";
     contentAsideNodes[5].style.borderBottom = "0px solid white";
+    contentAsideNodes[5].style.fontWeight = "lighter";
     if(paramButton == 1){
         paramThis.style.borderBottom = "3px solid white";
+        paramThis.style.fontWeight = "bold";
         contentAside.style.backgroundColor = "rgba(47,161,213,0.85)";
     } else if(paramButton == 2){
         paramThis.style.borderBottom = "3px solid white";
+        paramThis.style.fontWeight = "bold";
         contentAside.style.backgroundColor = "rgba(148,188,55,0.85)";    
     } else if(paramButton == 3){
         paramThis.style.borderBottom = "3px solid white";
+        paramThis.style.fontWeight = "bold";
         contentAside.style.backgroundColor = "rgba(247,180,0,0.85)";
     }
 };
