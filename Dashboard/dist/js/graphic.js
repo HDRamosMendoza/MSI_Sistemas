@@ -226,6 +226,7 @@ var lineChartData = {
 
 /* 2 */
 var chartColors21 = window.chartColors;
+
 var color21 = Chart.helpers.color;
 var config21 = {
     type: 'polarArea',
@@ -380,6 +381,115 @@ var config4 = {
     }
 };
 
+var configPrueba1 = {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            data: [
+                randomScalingFactor(),
+                randomScalingFactor(),
+            ],
+            backgroundColor: [
+                window.chartColors.white,
+                window.chartColors.as
+            ],
+            label: 'Dataset 1'
+        }],
+        labels: [
+            'Red',
+            'White'
+        ]
+    },
+    options: {
+        responsive: true,      
+        title: {
+            display: false,
+            text: 'Chart.js Doughnut Chart'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        },
+        legend: {
+            display: false,
+            position: 'left',
+        },
+        plugins: {
+            labels: {
+              // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+              render: 'value',
+      
+              // precision for percentage, default is 0
+              precision: 0,
+      
+              // identifies whether or not labels of value 0 are displayed, default is false
+              showZero: true,
+      
+              // font size, default is defaultFontSize
+              fontSize: 14,
+      
+              // font color, can be color array for each data or function for dynamic color, default is defaultFontColor
+              fontColor: '#000000',
+      
+              // font style, default is defaultFontStyle
+              fontStyle: 'normal',
+      
+              // font family, default is defaultFontFamily
+              fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      
+              // draw text shadows under labels, default is false
+              textShadow: true,
+      
+              // text shadow intensity, default is 6
+              shadowBlur: 10,
+      
+              // text shadow X offset, default is 3
+              shadowOffsetX: -5,
+      
+              // text shadow Y offset, default is 3
+              shadowOffsetY: 5,
+      
+              // text shadow color, default is 'rgba(0,0,0,0.3)'
+              shadowColor: 'rgba(255,0,0,0.75)',
+      
+              // draw label in arc, default is false
+              // bar chart ignores this
+              arc: true,
+      
+              // position to draw label, available value is 'default', 'border' and 'outside'
+              // bar chart ignores this
+              // default is 'default'
+              position: 'default',
+      
+              // draw label even it's overlap, default is true
+              // bar chart ignores this
+              overlap: true,
+      
+              // show the real calculated percentages from the values and don't apply the additional logic to fit the percentages to 100 in total, default is false
+              showActualPercentages: true,
+      
+              // set images when `render` is 'image'
+              images: [
+                {
+                  src: 'image.png',
+                  width: 16,
+                  height: 16
+                }
+              ],
+      
+              // add padding when position is `outside`
+              // default is 2
+              outsidePadding: 4,
+      
+              // add margin of text when position is `outside` or `border`
+              // default is 2
+              textMargin: 4
+            }
+          }
+
+    }
+};
+
 /* BAR - Vertical */
 
 var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -508,7 +618,80 @@ var config7 = {
         responsive: true,
         legend: {
             position: 'left',
-        }
+        },  
+        plugins: {
+            labels: {
+              // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+              render: 'value',
+      
+              // precision for percentage, default is 0
+              precision: 0,
+      
+              // identifies whether or not labels of value 0 are displayed, default is false
+              showZero: true,
+      
+              // font size, default is defaultFontSize
+              fontSize: 14,
+      
+              // font color, can be color array for each data or function for dynamic color, default is defaultFontColor
+              fontColor: '#fff',
+      
+              // font style, default is defaultFontStyle
+              fontStyle: 'normal',
+      
+              // font family, default is defaultFontFamily
+              fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      
+              // draw text shadows under labels, default is false
+              textShadow: true,
+      
+              // text shadow intensity, default is 6
+              shadowBlur: 10,
+      
+              // text shadow X offset, default is 3
+              shadowOffsetX: -5,
+      
+              // text shadow Y offset, default is 3
+              shadowOffsetY: 5,
+      
+              // text shadow color, default is 'rgba(0,0,0,0.3)'
+              shadowColor: 'rgba(255,0,0,0.75)',
+      
+              // draw label in arc, default is false
+              // bar chart ignores this
+              arc: true,
+      
+              // position to draw label, available value is 'default', 'border' and 'outside'
+              // bar chart ignores this
+              // default is 'default'
+              position: 'default',
+      
+              // draw label even it's overlap, default is true
+              // bar chart ignores this
+              overlap: true,
+      
+              // show the real calculated percentages from the values and don't apply the additional logic to fit the percentages to 100 in total, default is false
+              showActualPercentages: true,
+      
+              // set images when `render` is 'image'
+              images: [
+                {
+                  src: 'image.png',
+                  width: 16,
+                  height: 16
+                }
+              ],
+      
+              // add padding when position is `outside`
+              // default is 2
+              outsidePadding: 4,
+      
+              // add margin of text when position is `outside` or `border`
+              // default is 2
+              textMargin: 4
+            }
+          }
+
     }
 };
 
@@ -567,6 +750,22 @@ window.onload = function() {
     /* 4 */
     var ctx = document.getElementById('chart-area4').getContext('2d');
     window.myDoughnut = new Chart(ctx, config4);
+
+    /* PRUEBA SECTOR 1 */
+    var ctxPrueba1 = document.getElementById('chart-Prueba1').getContext('2d');
+    window.myDoughnutPrueba1 = new Chart(ctxPrueba1, configPrueba1);
+    
+    var ctxPrueba2 = document.getElementById('chart-Prueba2').getContext('2d');
+    window.myDoughnutPrueba2 = new Chart(ctxPrueba2, configPrueba1);
+
+    var ctxPrueba3 = document.getElementById('chart-Prueba3').getContext('2d');
+    window.myDoughnutPrueba3 = new Chart(ctxPrueba3, configPrueba1);
+    
+    var ctxPrueba4 = document.getElementById('chart-Prueba4').getContext('2d');
+    window.myDoughnutPrueba4 = new Chart(ctxPrueba4, configPrueba1);
+
+    var ctxPrueba5 = document.getElementById('chart-Prueba5').getContext('2d');
+    window.myDoughnutPrueba5 = new Chart(ctxPrueba5, configPrueba1);
 
     /* 5 BAR Vertical */
 
@@ -653,7 +852,6 @@ window.onload = function() {
     /* Fondo por defecto */
     document.getElementById('DefultButton').click();
 };
-
 
 /* Cambia el fondo según el click */
 let _changeButton = function(paramThis, paramButton) {

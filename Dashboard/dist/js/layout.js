@@ -325,33 +325,39 @@ var persistentComponentC1 = function( container, componentState) {
                 <section>\
                     <div class="aside-sector">\
                         <div>Incidencia</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div class="aside-number">47</div>\
+                        <div class="aside-alert">ÚLTIMOS 60</div>\
+                        <div class="aside-alert">MINUTOS</div>\
                     </div>\
                     <div class="aside-sector">\
                         <div>Sector I</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div style="width:100%; height: 100% !important">\
+                            <canvas id="chart-Prueba1"></canvas>\
+                        </div>\
                     </div>\
                     <div class="aside-sector">\
                         <div>Sector II</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div style="width:100%; height: 100% !important">\
+                            <canvas id="chart-Prueba2"></canvas>\
+                        </div>\
                     </div>\
                     <div class="aside-sector">\
                         <div>Sector III</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div style="width:100%; height: 100% !important">\
+                            <canvas id="chart-Prueba3"></canvas>\
+                        </div>\
                     </div>\
                     <div class="aside-sector">\
                         <div>Sector VI</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div style="width:100%; height: 100% !important">\
+                            <canvas id="chart-Prueba4"></canvas>\
+                        </div>\
                     </div>\
                     <div class="aside-sector">\
                         <div>Sector V</div>\
-                        <div>CONTENIDO</div>\
-                        <div></div>\
+                        <div style="width:100%; height: 100% !important">\
+                            <canvas id="chart-Prueba5"></canvas>\
+                        </div>\
                     <div>\
                 </section>\
             </div>\

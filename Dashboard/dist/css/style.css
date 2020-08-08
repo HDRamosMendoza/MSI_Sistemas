@@ -52,7 +52,7 @@ h2 {
 	text-align: center;
 	letter-spacing: 2px;
 	font-weight: bold;
-	font-size: 18px !important;
+	font-size: 15px !important;
     font-family: 'HelveticaNeueUltraLight' !important;
 }
 .aside-layout section .aside-title {
@@ -85,44 +85,58 @@ h2 {
 }
 .aside-layout section .aside-sector {
 	display: inline-block;
+	vertical-align: top;
 	width: 150px;
+	margin-top: 20px;
+}
+.aside-layout section .aside-sector:first-child {
+	width: 100px;
+	margin-right: 10px;
+}
+.aside-layout section .aside-sector:first-child .aside-number{
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-size: 50px !important;
+    font-family: 'HelveticaNeueUltraLight' !important;
+}
+.aside-layout section .aside-sector:first-child .aside-alert{
+	color: white;
+	text-align: center;
+	font-size: 13px !important;
+	font-family: 'HelveticaNeueUltraLight' !important;
+	
 }
 .aside-layout section .aside-sector div:first-child {
 	color: white;
 	text-align: center;
 	text-transform: uppercase;
+	margin-bottom: 5px;
 	padding: 0 0 5px 0;
 	letter-spacing: 3px;
 	font-weight: bold;
 	font-family: 'HelveticaNeueUltraLight' !important;
 }
-
-
 /* BEGIN - Scroll personalizado */
 .aside-layout section:last-child::-webkit-scrollbar {
 	-webkit-appearance: none;
-  }
-  
+}  
 .aside-layout section:last-child::-webkit-scrollbar:vertical {
 	width:10px;
-}
-  
+} 
 .aside-layout section:last-child::-webkit-scrollbar-button:increment,
 .aside-layout section:last-child::-webkit-scrollbar-button {
 	display: none;
 } 
-  
 .aside-layout section:last-child::-webkit-scrollbar:horizontal {
 	background-color: rgba(0,0,0,0.1);
 	height: 10px;  
-}
-  
+} 
 .aside-layout section:last-child::-webkit-scrollbar-thumb {
 	background-color: rgba(0,0,0,0.5);
 	border-radius: 20px;
 	/*border: 1px solid #024f49;*/
-}
-  
+} 
 .aside-layout section:last-child::-webkit-scrollbar-track {
 	border-radius: 10px;  
 }
