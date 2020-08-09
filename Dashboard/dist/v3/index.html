@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<!-- TITLE -->
+		<title>MSI - Dashboard</title>
+		<!-- META -->
+		<meta charset="UTF-8">
+		<meta name="keywords" 	 content="Dashboard" />
+		<meta name="description" content="Dashboard - MSI" />
+		<meta name="author" 	 content="Heber Daniel Ramos Mendoza"/>
+		<meta name="copyright" 	 content="MSI - Municipalidad de San Isidro"/>
+		<!-- CSS - LEAFLET -->
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
+		<!-- CSS - PRIVATE -->
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+	</head>
+	<body>
+		<!-- MAP -->
+		<div id="map"></div>
+		<!-- ASIDE -->
+		<div class="aside-layout">
+			<section>
+				<div class="aside-button">
+						<div class="btn-tab" name="ÍNDICE DE ASALTOS Y ROBOS" onclick="_changeButton(this,1)" id="DefultButton">ASALTO Y ROBO</div>
+						<div class="btn-tab" name="ÍNDICE DE ACCIDENTES" onclick="_changeButton(this,2)">ACCIDENTE</div>
+						<div class="btn-tab" name="ÍNDICE DE APOYO POR SEGURIDAD" onclick="_changeButton(this,3)">SEGURIDAD</div>
+				</div>
+				<div class="aside-name"></div>
+				<div class="aside-title">VISTA</div>
+				<div class="aside-time" id="time"></div>
+				<div class="aside-message">Zoom a las incidencias</div>
+			</section>
+			<section>
+				<div class="aside-sector">
+					<div>Incidencia</div>
+					<div class="aside-number">47</div>
+					<div class="aside-alert">Rango de tiempo</div>
+					<select name="select">	
+						<option value="60" selected>01 hora</option> 
+						<option value="720">12 horas</option> 
+						<option value="1440">24 horas</option>
+						<option value="10080">07 días</option>
+					</select>
+				</div>
+				<div class="aside-sector">
+					<div>Sector 01</div>
+					<div style="width:100%; height: 100% !important">
+						<canvas id="chart-Prueba1"></canvas>
+					</div>
+				</div>
+				<div class="aside-sector">
+					<div>Sector 02</div>
+					<div style="width:100%; height: 100% !important">
+						<canvas id="chart-Prueba2"></canvas>
+					</div>
+				</div>
+				<div class="aside-sector">
+					<div>Sector 03</div>
+					<div style="width:100%; height: 100% !important">
+						<canvas id="chart-Prueba3"></canvas>
+					</div>
+				</div>
+				<div class="aside-sector">
+					<div>Sector 04</div>
+					<div style="width:100%; height: 100% !important">
+						<canvas id="chart-Prueba4"></canvas>
+					</div>
+				</div>
+				<div class="aside-sector">
+					<div>Sector 05</div>
+					<div style="width:100%; height: 100% !important">
+						<canvas id="chart-Prueba5"></canvas>
+					</div>
+				<div>
+			</section>
+		</div>
+		<!-- JS - LEAFLET -->
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+		<!-- JS - MOMENT -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+		<!-- JS - CHART -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+		<!-- JS - CHART LABEL -->
+		<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+		<!-- JS - JQUERY -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<!-- JS - UTILS -->
+		<script src="./js/utils.js"></script>
+		<!-- JS - PRIVATE -->
+		<script src="./js/map.js"></script>
+		<script src="./js/script.js"></script>
+		<script src="./js/graphic.js"></script>
+	</body>
+</html>
