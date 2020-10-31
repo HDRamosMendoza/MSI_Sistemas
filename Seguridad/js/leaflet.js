@@ -73,11 +73,14 @@ fnLoadSector = function(idElement,urlWFS) {
 fnLoadSector('SectorID','http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs');
 
 let multipolygonGeojson;
-fnChangeSector = function(idElement) {
+console.log("cargo");
+let fnChangeSector = function(idElement) {
     try { /* DOM - Checkbox (input) */
+    	console.log("ENTRO");
         const nodeCheckbox = document.getElementById(idElement);
         nodeCheckbox.addEventListener('change', function(event) {
             event.preventDefault();
+            console.log("LE DIO CLICK");
             let idValue = this.value.trim();
             //map.panTo(new L.LatLng(40.737, -73.923));
             //map.setView(new L.LatLng(40.737, -73.923), 8);
@@ -113,11 +116,12 @@ fnChangeSector('SectorID');
 /*Configurando*/
 function fnTileLayer() {
 	schools = L.tileLayer.wms('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wms', {
+		bgcolor: 'B92C0E',
         layers: 'msigeoportal:sec_catastro',
         format: 'image/png',
         transparent: true,
         maxZoom: 30,
-        opacity: 0.5,
+        opacity: 1,
         cql_filter: '1=2',
         pane: 'labels'
 	}).addTo(map);
@@ -138,6 +142,62 @@ var greenIcon = L.icon({
 L.marker([-12.0989,-77.0347],{icon: greenIcon}).addTo(map);
 
 /* Zoom - San Isidro */
+/*
 setTimeout(function(){ 
 	map.flyTo([-12.099167, -77.034722], 13);
 }, 1000);
+*/
+
+/*
+L270880
+L270020
+L270040
+L270060
+*/
+fnLoadCalle = function(urlWFS) {
+    try { /* DOM - Checkbox (input) */
+        $.ajax('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs', {
+	  		type: 'GET',
+	  		data: {
+	      		service: 'WFS',
+	      		request: 'GetFeature',
+	      		typeName: 'msigeoportal:tg_vias_general',
+	      		cql_filter: "codi_via='L270440'",
+	      		srsname: 'EPSG:4326',
+	      		outputFormat: 'application/json'
+	    	}
+	  	}).done(function(item) { 	
+		  	features = item.features;
+			let polylineCalle = L.geoJson(features[0]).addTo(map);  
+			polylineCalle.eachLayer(function (layer) {
+			  	layer.bindPopup(`
+					<p>
+						<center><strong>Vía</strong></center><br>
+						<b>Código:</b> ${layer.feature.properties.codi_via.replace("L27", "")}<br>
+						<b>Nombre:</b> ${layer.feature.properties.nomenclatu}<br>
+						<b>Tipo:</b> ${layer.feature.properties.tipo_via}<br>  
+					</p>`).openPopup();
+			  layer.myTag = "myGeoJSON";
+		  	});
+			map.fitBounds(polylineCalle.getBounds());
+		});
+    } catch (error) { console.error(error); }
+};
+
+fnLoadCalle('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wfs');
+/*
+let mapCalle;
+fnTileCalle = function() {
+    mapCalle = L.tileLayer.wms('http://geo.munisanisidro.gob.pe:8080/geoserver/msigeoportal/wms', {
+        layers: 'msigeoportal:tg_vias_general',
+        format: 'image/png',
+        transparent: true,
+        maxZoom: 30,
+        opacity: 1,
+        cql_filter: "codi_via='L270440'",
+        pane: 'labels'
+	}).addTo(map);
+};
+
+fnTileCalle();
+*/
